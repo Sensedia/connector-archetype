@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  connector-test:
+    build: .
+    container_name: connector-test
+    ports:
+      - "8080:8080"
+      - "8000:8000"
+    environment:
+      PORT: 8080
+      JAVA_OPTS: "-Djava.security.egd=file:/dev/./urandom -XX:+UseParallelGC -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -Xmx448m"
+      CONNECTOR_ID: "sensedia"
+      FACTOR: "sensedia"
+      ENABLE_LOG: "true"
+      LOG_LEVEL: "INFO"
+      LOG_LEVEL_CAMEL: "INFO"
